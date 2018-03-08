@@ -115,13 +115,20 @@
           routerLinkActive="active">{{'Rights'|translate}}</a>
         <a *ngIf="authService.showObjHTML('user', 'read')"
           (click)="menuClick()"
-          class="nav-link" [routerLink]="['/user/list/false']" routerLinkActive="active">{{'Team'|translate}}</a>
+          class="nav-link" [routerLink]="['/user/list/false']" routerLinkActive="active">
+          {{'Users'|translate}}</a>
         <a class="nav-link"
           (click)="menuClick()"
-          [routerLink]="['/user/' + authService.getCurrentUser()._id]" routerLinkActive="active">{{'My profile'|translate}}</a>
+          [routerLink]="['/user/' + authService.getCurrentUser()._id]" routerLinkActive="active">
+          {{'My profile'|translate}}</a>
         <a class="nav-link"
           (click)="menuClick()"
-          [routerLink]="['/team/']" routerLinkActive="active">{{'Teams'|translate}}</a>
+          [routerLink]="['/team/']" routerLinkActive="active">
+          {{'Teams'|translate}}</a>
+        <a class="nav-link"
+          (click)="menuClick()"
+          [routerLink]="['/tour/']" routerLinkActive="active">
+          {{'Tours'|translate}}</a>
         <a class="nav-link"
           (click)="menuClick()"
           (click)="logout()">{{'Logout'|translate}}</a>

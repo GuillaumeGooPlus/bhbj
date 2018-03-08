@@ -9,6 +9,7 @@ export class Search {
   quoteType = '';
   quoteId = '';
   userId = '';
+  tourId = '';
   clientId = '';
   paiementQuoteId = '';
   endDate: Date = new Date();

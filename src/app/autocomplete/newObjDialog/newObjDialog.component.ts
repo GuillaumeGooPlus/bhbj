@@ -6,14 +6,10 @@ import { UserDialogComponent } from '../../user/singleUser/dialog/userDialog.com
 import { CompanieDialogComponent } from '../../companie/single/dialog/companieDialog.component';
 import { ProductDialogComponent } from '../../product/single/dialog/productDialog.component';
 import { TeamDialogComponent } from '../../team/single/dialog/teamDialog.component';
+import { TourDialogComponent } from '../../tour/single/dialog/tourDialog.component';
 import { Search} from '../../shared/shared.model';
 import { PaiementQuoteDialogComponent } from '../../paiementQuote/single/dialog/paiementQuoteDialog.component';
 import { MatDialog } from '@angular/material';
-// import { TranslateService } from '../../translate/translate.service';
-// import { QuoteDialogComponent } from '../../quote/single/dialog/quoteDialog.component';
-// import { ProjectDialogComponent } from '../../project/single/dialog/projectDialog.component';
-
-
 
 
 
@@ -83,6 +79,9 @@ export class newObjDialogComponent implements OnInit {
 
       if (typeObj === 'team') {
         dialogComp = TeamDialogComponent
+      }
+      if (typeObj === 'tour') {
+        dialogComp = TourDialogComponent
       }
 
 
