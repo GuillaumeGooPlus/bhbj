@@ -15,7 +15,7 @@ export class Search {
   startDate: Date = new Date();
   assignedToId = '';
   projectId = '';
-  // parentQuoteId = '';
+  teamId = '';
   isExternalUser = true;
   isExpense = false;
   typeQuote = '';

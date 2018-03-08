@@ -43,6 +43,8 @@ let defaultValue = [
 //   [{value:'read',name:'Read'},{value:'write', name:'Write'}]},
 {name : 'Right', value: 'right', typeAccess:
   [{value:'read',name:'Read'},{value:'write', name:'Write'}]},
+{name : 'Team', value: 'team', typeAccess:
+  [{value:'read',name:'Read'},{value:'write', name:'Write'}]},
 
 // {name : 'Expense', value: 'expense', typeAccess:
 //   [{value:'read',name:'Read'},{value:'write', name:'Write'}]},

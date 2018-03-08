@@ -121,6 +121,9 @@
           [routerLink]="['/user/' + authService.getCurrentUser()._id]" routerLinkActive="active">{{'My profile'|translate}}</a>
         <a class="nav-link"
           (click)="menuClick()"
+          [routerLink]="['/team/']" routerLinkActive="active">{{'Teams'|translate}}</a>
+        <a class="nav-link"
+          (click)="menuClick()"
           (click)="logout()">{{'Logout'|translate}}</a>
     </mat-expansion-panel>
   </mat-accordion>
