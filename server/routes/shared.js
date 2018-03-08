@@ -86,7 +86,8 @@ module.exports = {
     //     })
     //   }
     // }
-
+    console.log('rightToReturn')
+    console.log(rightToReturn)
     return rightToReturn;
   },
   isInSubPeriod (companie) {
@@ -122,7 +123,7 @@ module.exports = {
     // console.log(this.getRight(user))
     // console.log('ppppp')
     user.rightsInApp.push(this.getRight(user))
-
+    console.log(user.rightsInApp)
     // let rightToUse = {}
     // if (user.rights.length) {
     //   rightToUse = user.rights

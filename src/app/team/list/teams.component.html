@@ -1,45 +1,23 @@
 <div class="container">
-  <app-header-title [showBack]="showBack" [title]="'Payments'" (saved)="saved($event)" [search]="{userId: search.userId, quoteId: search.quoteId}" [typeObj]="'team'"></app-header-title>
+  <app-header-title [showBack]="showBack" [title]="'Teams'" (saved)="saved($event)" [search]="{userId: search.userId, quoteId: search.quoteId}" [typeObj]="'team'"></app-header-title>
   <div class="row">
     <div class="col-lg-12">
       <table class="table table-hover">
         <thead>
           <tr>
             <th class="centre tdunder hideMobile">
-              {{'Type' | translate}}
+              {{'Name' | translate}}
               <app-sort (orderBy)="orderBy($event)" [search]="search" [filedToOrder]="'type'"></app-sort>
             </th>
-            <th class="centre tdunder hideMobile">
-              {{'quote' | translate}}
-            </th>
-            <th class="centre tdunder">{{'Client'| translate}}</th>
-            <th class="centre tdunder hideMobile">
-              {{'Date' | translate}}
-              <app-sort (orderBy)="orderBy($event)" [search]="search" [filedToOrder]="'datePaiement'"></app-sort>
-            </th>
-            <th class="centre tdunder">
-              {{'Amount' | translate}}
-              <app-sort (orderBy)="orderBy($event)" [search]="search" [filedToOrder]="'amount'"></app-sort>
-            </th>
+
           </tr>
         </thead>
         <tbody class="clienttbl">
           <tr *ngFor="let team of fetchedTeams" (click)="openDialogPaiement(team._id)" routerLinkActive="active">
             <td class="centre tdunder hideMobile">
-              {{team.type | translate}}
+              {{team.nameTeam | translate}}
             </td>
-            <td class="centre tdunder hideMobile">
-              <div *ngFor="let quote of team.quotes">
-                  {{quote.name}}
-              </div>
-            </td>
-            <td class="centre tdunder">
-              <div *ngFor="let client of team.userDebiteds">
-                  {{client.profile.name}} {{client.profile.lastName}}
-              </div>
-            </td>
-            <td class="centre tdunder hideMobile">{{team.datePaiement | date:'longDate' }}</td>
-            <td class="centre tdunder">{{team.amount | round | currency:team.currency}}</td>
+          
           </tr>
         </tbody>
       </table>

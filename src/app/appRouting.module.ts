@@ -22,7 +22,7 @@ export const routes: Routes = [
   {path: 'companie', loadChildren: 'app/companie/companie.module#CompanieModule', canActivate: [AuthGuardService]},
   {path: 'quote', loadChildren: 'app/quote/quote.module#QuoteModule', canActivate: [AuthGuardService]},
   {path: 'paiementQuote', loadChildren: 'app/paiementQuote/paiementQuote.module#PaiementQuoteModule', canActivate: [AuthGuardService]},
-  {path: 'team', loadChildren: 'app/team/team.module#teamModule', canActivate: [AuthGuardService]},
+  {path: 'team', loadChildren: 'app/team/team.module#TeamModule', canActivate: [AuthGuardService]},
   {path: 'userCalendar', loadChildren: 'app/userCalendar/userCalendar.module#UserCalendarModule', canActivate: [AuthGuardService]},
   {path: 'home', loadChildren: 'app/reporting/reporting.module#ReportingModule', canActivate: [AuthGuardService, NotClientGuardService]},
   {path: 'product', loadChildren: 'app/product/product.module#ProductModule', canActivate: [AuthGuardService]},

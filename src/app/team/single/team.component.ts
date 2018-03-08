@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TeamService } from '../team.service';
 import { PaiementService } from '../../companie/single/paiement/paiement.service';
 import { AccountConnectStripe } from '../../companie/single/connectStripe/connectStripe.model';
-import { Team, StripeCustomer, DataSource, PaiementsTypes } from '../team.model';
+import { Team } from '../team.model';
 import { ToastsManager } from 'ng2-toastr';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -41,13 +41,11 @@ export class TeamComponent implements OnInit {
   showPaiements = false;
   fetchedTeam: Team = new Team();
   fetchedProducts: Product[] = [];
-  stripeCust: StripeCustomer = new StripeCustomer();
-  accountConnectStripe: AccountConnectStripe = new AccountConnectStripe();
-  newCard: DataSource = new DataSource();
+
   myForm: FormGroup;
   autocompleteProduct = '';
   step = -1;
-  paiementsTypes = PaiementsTypes;
+
   // fetchedUserCross: UserCross = new UserCross();
   // arrayContentToSearch = []
   // fetchedUsers: User[] = [];
@@ -86,19 +84,7 @@ export class TeamComponent implements OnInit {
     this.step = index;
   }
 
-  getUserInfosConnectStripe() {
-    this.fetchedTeam.ownerCompanies.forEach(companieId => {
-      //  console.log(companieId.toString())
-      this.paiementService.getUserInfosConnectByCompanieId(companieId.toString())
-        .subscribe(res => {
-          //  this.paiementsTypes.push({label: 'Stripe', value: 'stripe' })
-          this.accountConnectStripe = res.customer
-          // this.paiementsTypes = PaiementsTypes
-          // console.log(PaiementsTypes)
-          // this.paiementsTypes.push({ label: 'Card', value: 'stripe' })
-        }, error => { console.log(error) })
-    })
-  }
+
 
   closeDialog() {
     this.save()
@@ -106,13 +92,12 @@ export class TeamComponent implements OnInit {
   }
   ngOnInit() {
 
-    this.authService.getCurrentUser().ownerCompanies.forEach((companie: Companie) => {
-      this.fetchedTeam.currency = companie.option.currency;
-    })
+
     setTimeout(() => { this.step = 0 });
     this.myForm = this._fb.group({
       amount: [''],
       title: [''],
+      nameTeam: [''],
       isPaid: [false],
       type: [''],
       datePaiement: [null, []],
@@ -150,24 +135,24 @@ export class TeamComponent implements OnInit {
   // getPdf() {
   //   alert('soon')
   // }
-  clearAutocompleteClient() {
-    this.fetchedTeam.quotes = []
-  }
-  selectQuote(quote: Quote) {
-
-    // console.log(quote.priceQuote.priceGlobalWithDiscount)
-    this.fetchedTeam.quotes = [quote]
-    this.search.quoteId = quote._id
-
-  }
+  // clearAutocompleteClient() {
+  //   this.fetchedTeam.quotes = []
+  // }
+  // selectQuote(quote: Quote) {
+  //
+  //   // console.log(quote.priceQuote.priceGlobalWithDiscount)
+  //   this.fetchedTeam.quotes = [quote]
+  //   this.search.quoteId = quote._id
+  //
+  // }
   // selectProject(project: Project) {
   //   this.fetchedTeam.projects = [project]
   // }
-  selectUserDebited(user: User) {
-    this.fetchedTeam.userDebiteds = [user]
-    this.search.userId = user._id
-    // this.getUserCross(user._id)
-  }
+  // selectUserDebited(user: User) {
+  //   this.fetchedTeam.userDebiteds = [user]
+  //   this.search.userId = user._id
+  //   // this.getUserCross(user._id)
+  // }
   //
   // getUserCross(id: string) {
   //   this.userService.getUserCross(id)
@@ -189,19 +174,19 @@ export class TeamComponent implements OnInit {
   //       }
   //     )
   // }
-  autocompleteAfterNgChangesUser(user: User) {
+  // autocompleteAfterNgChangesUser(user: User) {
+  //
+  //   // this.getUserCross(user._id)
+  //   // this.selectUserDebited(user)
+  // }
 
-    // this.getUserCross(user._id)
-    // this.selectUserDebited(user)
-  }
-
-  autocompleteAfterNgChanges(quote: Quote) {
-
-    if (!this.fetchedTeam._id) {
-      this.fetchedTeam.amount = Math.round(quote.priceQuote.outstandingBalance)
-    }
-    // console.log(this.fetchedTeam.quotes)
-  }
+  // autocompleteAfterNgChanges(quote: Quote) {
+  //
+  //   if (!this.fetchedTeam._id) {
+  //     this.fetchedTeam.amount = Math.round(quote.priceQuote.outstandingBalance)
+  //   }
+  //   // console.log(this.fetchedTeam.quotes)
+  // }
   // downloadPDF() {
   //   this.teamService.downloadPDF(this.fetchedTeam._id)
   //     .subscribe(
@@ -213,21 +198,21 @@ export class TeamComponent implements OnInit {
   //     )
   // }
 
-  getQuote(idQuote: string) {
-    this.quoteService.getQuote(idQuote)
-      .subscribe(
-      res => {
-        this.fetchedTeam.quotes = [res]
-      },
-      error => { console.log(error) }
-      )
-  }
+  // getQuote(idQuote: string) {
+  //   this.quoteService.getQuote(idQuote)
+  //     .subscribe(
+  //     res => {
+  //       this.fetchedTeam.quotes = [res]
+  //     },
+  //     error => { console.log(error) }
+  //     )
+  // }
 
   save() {
-    if (!this.fetchedTeam.userDebiteds.length) {
-      this.toastr.error('Error!', 'User is mandatory')
-      return;
-    }
+    // if (!this.fetchedTeam.userDebiteds.length) {
+    //   this.toastr.error('Error!', 'User is mandatory')
+    //   return;
+    // }
     let this2 = this
     return new Promise(function(resolve, reject) {
       // this2.fetchedTeam
@@ -310,7 +295,7 @@ export class TeamComponent implements OnInit {
       .subscribe(
       res => {
         this.fetchedTeam = res
-        this.getUserInfosConnectStripe()
+
         // if(this.fetchedTeam.type === 'stripe')
         //   this.getStripeCust()
         // this.fetchedTeam
@@ -384,24 +369,24 @@ export class TeamComponent implements OnInit {
     this.step++
     this.save()
   }
-  payByCardConnect() {
-    this.save().then(() => {
-      this.paiementService.payByCardConnect(this.fetchedTeam._id, this.newCard)
-        .subscribe(
-        res => {
-          // this.userService.cleanCurrentUserInSession()
-          this.toastr.success('Great!')
-          // console.log(res)
-          this.save()
-          // this.getStripeCust()
-        },
-        error => {
-          //   this.toastr.error(error)
-          // console.log(error);
-        }
-        );
-    })
-  }
+  // payByCardConnect() {
+  //   this.save().then(() => {
+  //     this.paiementService.payByCardConnect(this.fetchedTeam._id, this.newCard)
+  //       .subscribe(
+  //       res => {
+  //         // this.userService.cleanCurrentUserInSession()
+  //         this.toastr.success('Great!')
+  //         // console.log(res)
+  //         this.save()
+  //         // this.getStripeCust()
+  //       },
+  //       error => {
+  //         //   this.toastr.error(error)
+  //         // console.log(error);
+  //       }
+  //       );
+  //   })
+  // }
   // saveCustInStripe() {
   //   // this.paiementService.saveCustInStripe(this.fetchedTeam)
   //   //   .subscribe(

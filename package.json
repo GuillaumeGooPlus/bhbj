@@ -42,7 +42,6 @@
     "jsonwebtoken": "^8.1.0",
     "mime": "latest",
     "mongodb": "3.0.1",
-    "mongoimport": "^1.0.6",
     "mongoose": "4.13.9",
     "mongoose-unique-validator": "^1.0.3",
     "morgan": "latest",
@@ -78,6 +77,6 @@
     "protractor": "~5.2.2",
     "ts-node": "~4.1.0",
     "tslint": "4.5.1",
-    "typescript": "^2.6.1"
+    "typescript": "^2.6.2"
   }
 }

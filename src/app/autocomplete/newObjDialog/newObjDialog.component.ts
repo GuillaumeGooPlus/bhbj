@@ -2,19 +2,20 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-// import { TranslateService } from '../../translate/translate.service';
 import { UserDialogComponent } from '../../user/singleUser/dialog/userDialog.component';
-// import { QuoteDialogComponent } from '../../quote/single/dialog/quoteDialog.component';
 import { CompanieDialogComponent } from '../../companie/single/dialog/companieDialog.component';
-// import { ProjectDialogComponent } from '../../project/single/dialog/projectDialog.component';
 import { ProductDialogComponent } from '../../product/single/dialog/productDialog.component';
-import {Search} from '../../shared/shared.model'
-
-
+import { TeamDialogComponent } from '../../team/single/dialog/teamDialog.component';
+import { Search} from '../../shared/shared.model';
 import { PaiementQuoteDialogComponent } from '../../paiementQuote/single/dialog/paiementQuoteDialog.component';
-
-
 import { MatDialog } from '@angular/material';
+// import { TranslateService } from '../../translate/translate.service';
+// import { QuoteDialogComponent } from '../../quote/single/dialog/quoteDialog.component';
+// import { ProjectDialogComponent } from '../../project/single/dialog/projectDialog.component';
+
+
+
+
 
 
 @Component({
@@ -42,7 +43,7 @@ export class newObjDialogComponent implements OnInit {
 
 
   ngOnInit() { }
-  ngOnChanges() { }
+
 
   openDialog(typeObj: string) {
     this.cliked.emit()
@@ -65,17 +66,24 @@ export class newObjDialogComponent implements OnInit {
       // if (typeObj == 'quote')
       //   dialogComp = QuoteDialogComponent
 
-      if (typeObj == 'companie')
+      if (typeObj === 'companie') {
         dialogComp = CompanieDialogComponent
+      }
 
       // if (typeObj == 'project')
       //   dialogComp = ProjectDialogComponent
 
-      if (typeObj == 'paiementQuote')
+      if (typeObj === 'paiementQuote') {
         dialogComp = PaiementQuoteDialogComponent
+      }
 
-      if (typeObj == 'product')
+      if (typeObj === 'product') {
         dialogComp = ProductDialogComponent
+      }
+
+      if (typeObj === 'team') {
+        dialogComp = TeamDialogComponent
+      }
 
 
       const dialogRef = this.mdDialog.open(dialogComp, {
