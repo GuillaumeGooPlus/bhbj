@@ -41,7 +41,7 @@ export class ToursComponent implements OnInit, OnChanges {
   }
 
   getToursInit() {
-    const this2 = this
+    const this2 = this;
     setTimeout(function(){
       this2.search.orderBy = 'name';
       this2.getTours(1, this2.search)

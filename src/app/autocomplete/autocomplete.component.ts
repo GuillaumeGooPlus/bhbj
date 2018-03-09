@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { UserService} from '../user/user.service';
 import { CompanieService} from '../companie/companie.service';
+import { TourService} from '../tour/tour.service';
 import { ProductService} from '../product/product.service';
 import { QuoteService} from '../quote/quote.service';
 import { TemplateQuoteService} from '../quote/templateQuote.service';
@@ -8,15 +9,6 @@ import {Router} from '@angular/router';
 import { User } from '../user/user.model';
 import {Search} from '../shared/shared.model';
 import { RightService} from '../right/right.service';
-
-// import { ProjectService} from '../project/project.service';
-// import {MatDialog} from '@angular/material';
-
-// import { UserDialogComponent } from '../user/singleUser/dialog/userDialog.component';
-// import { CompanieDialogComponent } from '../companie/single/dialog/companieDialog.component';
-// import { ProjectDialogComponent } from '../project/single/dialog/projectDialog.component';
-
-// import { Quote } from '../quote/quote.model';
 
 
 @Component({
@@ -29,7 +21,7 @@ export class AutocompleteComponent implements OnChanges{
   @Input() arrayContent = [];
   @Input() singleChoice = true;
   @Input() title = '';
-  @Input() search: Search = new Search()
+  @Input() search: Search = new Search();
   @Input() canDelete = true;
   @Input() canCreateNewObj = true;
   @Input() enableLink = true;
@@ -47,15 +39,16 @@ export class AutocompleteComponent implements OnChanges{
 
 
   constructor(
-    // public dialog: MatDialog,
     private userService: UserService,
     private companieService: CompanieService,
+    private tourService: TourService,
     private productService: ProductService,
     private quoteService: QuoteService,
-    // private projectService: ProjectService,
     private templateQuoteService: TemplateQuoteService,
     private rightService: RightService,
     private router: Router,
+    // public dialog: MatDialog,
+    // private projectService: ProjectService,
   ) {
 
   }
@@ -151,8 +144,19 @@ export class AutocompleteComponent implements OnChanges{
 
     }
 
-    if(this.typeAutocomplete === 'right') {
+    if (this.typeAutocomplete === 'right') {
       this.rightService.getRights(page, search)
+      .subscribe( res => {
+        this.loading = false
+        this.fetchedData = res.data
+      }, error => {
+        this.loading = false
+        console.log(error);
+      });
+    }
+
+    if (this.typeAutocomplete === 'tour') {
+      this.tourService.getTours(page, search)
       .subscribe( res => {
         this.loading = false
         this.fetchedData = res.data

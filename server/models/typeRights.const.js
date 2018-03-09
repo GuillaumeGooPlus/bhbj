@@ -58,43 +58,43 @@ let defaultValue = [
 
 let goldValue = [
 {name : 'Home', value: 'home', typeAccess: [{value:'read',name:'Read'}]},
-{name : 'Product', value: 'product', typeAccess:
-  [{value:'read',name:'Read'},{value:'write', name:'Write'}]},
-{name : 'Settings', value: 'settings', typeAccess: [{value:'read',name:'Read'}]},
-{name : 'Quote', value: 'quote', typeAccess:
-  [
-    {value:'read',name:'Read'},
-    {value:'write', name:'Write'},
-    // {value:'notification', name:'Get notification'},
-    {value:'signature', name:'Signature'},
-    {value:'drawing', name:'Drawing'},
-    // {value:'comment', name:'Comment'},
-    {value:'template', name:'Template'},
-    {value: 'seeAll', name: 'See all, not Only My Clients'}
-  ]},
-{name : 'Companie', value: 'companie', typeAccess:
-  [{value:'read',name:'Read'},{value:'write',name:'Write'}]},
-{name : 'User', value: 'user', typeAccess:[
-  {value:'read',name:'Read'},
-  {value:'write', name:'Write'},
-]},
-{name : 'Client', value: 'client', typeAccess:[
-  {value:'read', name:'Read'},
-  {value:'write', name:'Write'},
-  {value:'seeAll', name:'seel all, not Only Mine'},
-]},
-{name : 'Paiement', value: 'paiementQuote', typeAccess:
-  [
-    {value:'read',name:'Read'},
-    {value:'write', name:'Write'}
-  ]},
+// {name : 'Product', value: 'product', typeAccess:
+//   [{value:'read',name:'Read'},{value:'write', name:'Write'}]},
+// {name : 'Settings', value: 'settings', typeAccess: [{value:'read',name:'Read'}]},
+// {name : 'Quote', value: 'quote', typeAccess:
+//   [
+//     {value:'read',name:'Read'},
+//     {value:'write', name:'Write'},
+//     // {value:'notification', name:'Get notification'},
+//     {value:'signature', name:'Signature'},
+//     {value:'drawing', name:'Drawing'},
+//     // {value:'comment', name:'Comment'},
+//     {value:'template', name:'Template'},
+//     {value: 'seeAll', name: 'See all, not Only My Clients'}
+//   ]},
+// {name : 'Companie', value: 'companie', typeAccess:
+//   [{value:'read',name:'Read'},{value:'write',name:'Write'}]},
+// {name : 'User', value: 'user', typeAccess:[
+//   {value:'read',name:'Read'},
+//   {value:'write', name:'Write'},
+// ]},
+// {name : 'Client', value: 'client', typeAccess:[
+//   {value:'read', name:'Read'},
+//   {value:'write', name:'Write'},
+//   {value:'seeAll', name:'seel all, not Only Mine'},
+// ]},
+// {name : 'Paiement', value: 'paiementQuote', typeAccess:
+//   [
+//     {value:'read',name:'Read'},
+//     {value:'write', name:'Write'}
+//   ]},
 // {name : 'Task', value: 'task', typeAccess:
 //   [{value:'read',name:'Read'},{value:'write', name:'Write'}]},
-{name : 'userCalendar', value: 'userCalendar', typeAccess:[
-  {value: 'read', name: 'Read'},
-  {value: 'write', name: 'Write'},
-  {value: 'seeAll', name: 'See all, not Only Mine'},
-]},
+// {name : 'userCalendar', value: 'userCalendar', typeAccess:[
+//   {value: 'read', name: 'Read'},
+//   {value: 'write', name: 'Write'},
+//   {value: 'seeAll', name: 'See all, not Only Mine'},
+// ]},
 // {name : 'Plan', value: 'plan', typeAccess:
 //   [{value:'read',name:'Read'},{value:'write', name:'Write'}]},
 {name : 'Right', value: 'right', typeAccess:

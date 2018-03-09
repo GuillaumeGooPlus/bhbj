@@ -17,6 +17,11 @@
               <input matInput type="text" formControlName="nameTeam" [(ngModel)]="fetchedTeam.nameTeam" placeholder="{{'Name Team' | translate}}">
             </mat-form-field>
           </div>
+          <div class="col-12 col-lg-6">
+            <app-autocomplete
+              [title]="'Tours'" [singleChoice]=false [typeAutocomplete]="'tour'" [arrayContent]="fetchedTeam.tours">
+            </app-autocomplete>
+          </div>
         </div>
       </form>
       <mat-action-row>

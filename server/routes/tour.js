@@ -141,8 +141,9 @@ router.get('/page/:page', function (req, res, next) {
   searchQuery['ownerCompanies'] = req.user.ownerCompanies
 
 
-  if(req.query.search)
-    searchQuery['detailTour.nameTour'] = new RegExp(req.query.search, 'i')
+  if (req.query.search) {
+    searchQuery['nameTour'] = new RegExp(req.query.search, 'i')
+  }
 
 
 

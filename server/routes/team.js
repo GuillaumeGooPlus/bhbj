@@ -2,6 +2,7 @@ var express = require('express'),
     router  = express.Router(),
     config  = require('../config/config'),
     User    = require('../models/user.model'),
+    Tour    = require('../models/tour.model'),
     Team    = require('../models/team.model'),
     Form    = require('../models/form.model'),
     fs      = require('fs'),
@@ -149,7 +150,7 @@ router.get('/page/:page', function (req, res, next) {
   Team
   .find(searchQuery)
   .sort('-createdAt')
-  .populate({path: 'forms', model: 'Form'})
+  .populate({path: 'tours', model: 'Tour'})
   .limit(itemsPerPage)
   .skip(skip)
   .exec(function (err, item) {
@@ -183,8 +184,7 @@ router.get('/page/:page', function (req, res, next) {
 router.get('/:id', function (req, res, next) {
   Team
   .findById({_id: req.params.id})
-  .populate('vendors')
-  .populate('forms')
+  .populate({path: 'tours', model: 'Tour'})
   .exec(function (err, item) {
     if (err) {
       return res.status(404).json({

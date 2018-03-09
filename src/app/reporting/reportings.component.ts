@@ -4,10 +4,10 @@ import { QuoteService } from '../quote/quote.service';
 import { EmptyRow } from './reporting.model';
 import { Search } from '../shared/shared.model';
 import { TranslateService } from '../translate/translate.service';
+import { AuthService} from '../auth/auth.service';
 
 // import { PaiementQuote } from '../paiementQuote/paiementQuote.model';
 // import { BaseChartDirective } from 'ng2-charts/ng2-charts';
-// import { AuthService} from '../auth/auth.service';
 // import { ToastsManager } from 'ng2-toastr';
 
 
@@ -148,7 +148,7 @@ export class ReportingsComponent implements OnInit {
     private paiementQuoteService: PaiementQuoteService,
     private translateService: TranslateService,
     private quoteService: QuoteService,
-    // private authService: AuthService,
+    public authService: AuthService,
     //  private modalService: NgbModal,
     // private toastr: ToastsManager,
     // public dialog: MatDialog,

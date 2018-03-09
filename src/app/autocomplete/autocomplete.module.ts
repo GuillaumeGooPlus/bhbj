@@ -14,6 +14,7 @@ import {LoadingInAppModule} from '../nav/loadingInApp/loadingInApp.module';
 
 import {QuoteService} from '../quote/quote.service';
 import {RightService} from '../right/right.service';
+import {TourService} from '../tour/tour.service';
 import {TemplateQuoteService} from '../quote/templateQuote.service';
 
 @NgModule({
@@ -42,6 +43,7 @@ import {TemplateQuoteService} from '../quote/templateQuote.service';
     QuoteService,
     TemplateQuoteService,
     RightService,
+    TourService,
   ]
 })
 export class AutocompleteModule { }
