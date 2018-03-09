@@ -18,6 +18,7 @@
           <div *ngIf="typeAutocomplete=='companie'">{{data.nameCompanie}}</div>
           <div *ngIf="typeAutocomplete=='quote'">{{data.name}}</div>
           <div *ngIf="typeAutocomplete=='tour'">{{data.nameTour}}</div>
+          <div *ngIf="typeAutocomplete=='userEntry'">{{data.nameuserEntry}}</div>
           <div *ngIf="typeAutocomplete=='product'">{{data.details.referenceName}}</div>
           <div *ngIf="typeAutocomplete=='right'">{{data.detailRight.nameRight}}</div>
           <div *ngIf="typeAutocomplete=='templateQuote'">{{data.nameTemplate}}</div>
@@ -44,6 +45,7 @@
             <input *ngIf="typeAutocomplete=='companie'" readonly placeholder="{{title | translate}}" matInput type="text" value="{{data.nameCompanie}}">
             <input *ngIf="typeAutocomplete=='quote'" readonly placeholder="{{title | translate}}" matInput type="text" value="{{data.name}}">
             <input *ngIf="typeAutocomplete=='tour'" readonly placeholder="{{title}}" matInput type="text" value="{{data.nameTour}}">
+            <input *ngIf="typeAutocomplete=='userEntry'" readonly placeholder="{{title}}" matInput type="text" value="{{data.userEntryTour}}">
             <input *ngIf="typeAutocomplete=='product'" readonly placeholder="{{title | translate}}" matInput type="text" value="{{data.details.referenceName}}">
             <input *ngIf="typeAutocomplete=='right'" readonly placeholder="{{title}}" matInput type="text" value="{{data.detailRight.nameRight}}">
 

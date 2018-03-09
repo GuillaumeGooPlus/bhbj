@@ -23,6 +23,7 @@ export const routes: Routes = [
   {path: 'quote', loadChildren: 'app/quote/quote.module#QuoteModule', canActivate: [AuthGuardService]},
   {path: 'paiementQuote', loadChildren: 'app/paiementQuote/paiementQuote.module#PaiementQuoteModule', canActivate: [AuthGuardService]},
   {path: 'team', loadChildren: 'app/team/team.module#TeamModule', canActivate: [AuthGuardService]},
+  {path: 'userEntry', loadChildren: 'app/userEntry/userEntry.module#UserEntryModule', canActivate: [AuthGuardService]},
   {path: 'tour', loadChildren: 'app/tour/tour.module#TourModule', canActivate: [AuthGuardService]},
   {path: 'userCalendar', loadChildren: 'app/userCalendar/userCalendar.module#UserCalendarModule', canActivate: [AuthGuardService]},
   {path: 'home', loadChildren: 'app/reporting/reporting.module#ReportingModule', canActivate: [AuthGuardService, NotClientGuardService]},

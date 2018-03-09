@@ -3,6 +3,7 @@ import { UserService} from '../user/user.service';
 import { CompanieService} from '../companie/companie.service';
 import { TourService} from '../tour/tour.service';
 import { ProductService} from '../product/product.service';
+import { UserEntryService} from '../userEntry/userEntry.service';
 import { QuoteService} from '../quote/quote.service';
 import { TemplateQuoteService} from '../quote/templateQuote.service';
 import {Router} from '@angular/router';
@@ -42,6 +43,7 @@ export class AutocompleteComponent implements OnChanges{
     private userService: UserService,
     private companieService: CompanieService,
     private tourService: TourService,
+    private userEntryService: UserEntryService,
     private productService: ProductService,
     private quoteService: QuoteService,
     private templateQuoteService: TemplateQuoteService,
@@ -158,10 +160,20 @@ export class AutocompleteComponent implements OnChanges{
     if (this.typeAutocomplete === 'tour') {
       this.tourService.getTours(page, search)
       .subscribe( res => {
-        this.loading = false
-        this.fetchedData = res.data
+        this.loading = false;
+        this.fetchedData = res.data;
       }, error => {
-        this.loading = false
+        this.loading = false;
+        console.log(error);
+      });
+    }
+    if (this.typeAutocomplete === 'userEntry') {
+      this.userEntryService.getUserEntrys(page, search)
+      .subscribe( res => {
+        this.loading = false;
+        this.fetchedData = res.data;
+      }, error => {
+        this.loading = false;
         console.log(error);
       });
     }

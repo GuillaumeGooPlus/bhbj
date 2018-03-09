@@ -11,6 +11,7 @@ export class Search {
   userId = '';
   tourId = '';
   clientId = '';
+  userEntryId = '';
   paiementQuoteId = '';
   endDate: Date = new Date();
   startDate: Date = new Date();

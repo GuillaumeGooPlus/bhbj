@@ -78,6 +78,10 @@ let goldValue = [
   {value:'read',name:'Read'},
   {value:'write', name:'Write'},
 ]},
+{name : 'UserEntry', value: 'userEntry', typeAccess:[
+  {value:'read',name:'Read'},
+  {value:'write', name:'Write'},
+]},
 // {name : 'Client', value: 'client', typeAccess:[
 //   {value:'read', name:'Read'},
 //   {value:'write', name:'Write'},

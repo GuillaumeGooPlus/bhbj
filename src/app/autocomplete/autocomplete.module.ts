@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material';
 import {MatIconModule} from '@angular/material';
 import {LoadingInAppModule} from '../nav/loadingInApp/loadingInApp.module';
 
+import { UserEntryService} from '../userEntry/userEntry.service';
 import {QuoteService} from '../quote/quote.service';
 import {RightService} from '../right/right.service';
 import {TourService} from '../tour/tour.service';
@@ -44,6 +45,7 @@ import {TemplateQuoteService} from '../quote/templateQuote.service';
     TemplateQuoteService,
     RightService,
     TourService,
+    UserEntryService,
   ]
 })
 export class AutocompleteModule { }

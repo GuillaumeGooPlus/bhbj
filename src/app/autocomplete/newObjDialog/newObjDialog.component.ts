@@ -7,6 +7,7 @@ import { CompanieDialogComponent } from '../../companie/single/dialog/companieDi
 import { ProductDialogComponent } from '../../product/single/dialog/productDialog.component';
 import { TeamDialogComponent } from '../../team/single/dialog/teamDialog.component';
 import { TourDialogComponent } from '../../tour/single/dialog/tourDialog.component';
+import { UserEntryDialogComponent } from '../../userEntry/single/dialog/userEntryDialog.component';
 import { Search} from '../../shared/shared.model';
 import { PaiementQuoteDialogComponent } from '../../paiementQuote/single/dialog/paiementQuoteDialog.component';
 import { MatDialog } from '@angular/material';
@@ -74,14 +75,17 @@ export class newObjDialogComponent implements OnInit {
       }
 
       if (typeObj === 'product') {
-        dialogComp = ProductDialogComponent
+        dialogComp = ProductDialogComponent;
       }
 
       if (typeObj === 'team') {
-        dialogComp = TeamDialogComponent
+        dialogComp = TeamDialogComponent;
       }
       if (typeObj === 'tour') {
-        dialogComp = TourDialogComponent
+        dialogComp = TourDialogComponent;
+      }
+      if (typeObj === 'userEntry') {
+        dialogComp = UserEntryDialogComponent;
       }
 
 

@@ -1,0 +1,70 @@
+<div class="container">
+  <app-header-title [showBack]=1 [isDialog]="isDialog" [title]="'UserEntry'" [icon]="'credit_card'"></app-header-title>
+  <mat-accordion>
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>attach_money</mat-icon>
+        </mat-panel-title>
+        <mat-panel-description>
+          {{'UserEntry' | translate}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <form [formGroup]="myForm" novalidate (ngSubmit)="save()">
+        <div class="row">
+          <div class="col-12 col-lg-6">
+            <mat-form-field>
+              <input matInput type="text" formControlName="nameUserEntry" [(ngModel)]="fetchedUserEntry.nameUserEntry" placeholder="{{'Name UserEntry' | translate}}">
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+      <mat-action-row>
+        <div class="spaceBetween width100perc">
+          <div>
+            <button *ngIf="fetchedUserEntry._id" mat-mini-fab color="warn" (click)="openDialogDelete()">
+              <mat-icon aria-label="delete">delete</mat-icon>
+            </button>
+          </div>
+          <button mat-mini-fab color="primary" (click)="nextStep()">
+            <mat-icon aria-label="Next">forward</mat-icon>
+          </button>
+        </div>
+      </mat-action-row>
+    </mat-expansion-panel>
+    <mat-expansion-panel *ngIf="fetchedUserEntry._id && fetchedUserEntry.amount" [expanded]="step === 1" (opened)="setStep(1)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>credit_card</mat-icon>
+        </mat-panel-title>
+        <mat-panel-description>
+          {{'Payment method' | translate}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div *ngIf="fetchedUserEntry.isPaid">
+        <mat-radio-group *ngIf="fetchedUserEntry.stripe.charge.status !=='succeeded'" [ngModelOptions]="{standalone: true}" [(ngModel)]="fetchedUserEntry.type">
+          <mat-radio-button class="paiementsTypes" *ngFor="let n of paiementsTypes" [value]="n.value">{{n.label | translate}}</mat-radio-button>
+          <mat-radio-button *ngIf="accountConnectStripe.id" [value]="'stripe'">{{'Card' | translate}}</mat-radio-button>
+        </mat-radio-group>
+        <div *ngIf="fetchedUserEntry.type=='stripe' && fetchedUserEntry._id">
+          <mat-card *ngIf="fetchedUserEntry.stripe.charge.status !=='succeeded'">
+            <app-paiement-card [hideAddress]=true [newCard]="newCard"></app-paiement-card>
+          </mat-card>
+          <mat-card *ngIf="fetchedUserEntry.stripe.charge.status ==='succeeded'">
+            <mat-icon color="accent">done</mat-icon>
+            {{fetchedUserEntry.stripe.charge.amount / 100}} {{fetchedUserEntry.stripe.charge.currency}} ({{fetchedUserEntry.stripe.charge.created * 1000 | date: 'dd/MM/yyyy'}})
+            <p>{{'Funding'| translate}}: {{fetchedUserEntry.stripe.charge.source.funding}}</p>
+          </mat-card>
+        </div>
+      </div>
+      <mat-action-row>
+        <button mat-mini-fab mat-mini-fab color="primary" *ngIf="fetchedUserEntry.type==='stripe' && fetchedUserEntry.stripe.charge.status !=='succeeded'" (click)="payByCardConnect()">
+          <mat-icon>credit_card</mat-icon>
+        </button>
+        <button *ngIf="fetchedUserEntry.type!=='stripe'" mat-mini-fab color="primary" (click)="closeDialog()">
+          <mat-icon aria-label="save">check_circle</mat-icon>
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
