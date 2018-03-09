@@ -74,10 +74,10 @@ let goldValue = [
 //   ]},
 // {name : 'Companie', value: 'companie', typeAccess:
 //   [{value:'read',name:'Read'},{value:'write',name:'Write'}]},
-// {name : 'User', value: 'user', typeAccess:[
-//   {value:'read',name:'Read'},
-//   {value:'write', name:'Write'},
-// ]},
+{name : 'User', value: 'user', typeAccess:[
+  {value:'read',name:'Read'},
+  {value:'write', name:'Write'},
+]},
 // {name : 'Client', value: 'client', typeAccess:[
 //   {value:'read', name:'Read'},
 //   {value:'write', name:'Write'},
