@@ -15,7 +15,7 @@
 
 
 
-      <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+      <mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
         <mat-step [stepControl]="formGroup1">
           <form [formGroup]="formGroup1" novalidate (ngSubmit)="save()">
             <mat-form-field>
