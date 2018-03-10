@@ -22,9 +22,10 @@ export const routes: Routes = [
   // {path: 'new/:idClient/:idProject', component: UserEntryComponent, canActivate: [AuthGuardService, PaiementGuardService]},
   // {path: 'edit/:idUserEntry', component: UserEntryComponent, canActivate: [AuthGuardService, PaiementGuardService]},
   {path: '', component: UserEntrysComponent, canActivate: [AuthGuardService]},
+  {path: 'new', component: UserEntryComponent, canActivate: [AuthGuardService]},
   {path: ':id', component: UserEntryComponent, canActivate: [AuthGuardService]},
   // {path: 'public/:idUserEntry', component: UserEntryComponent},
-  {path: ':isExpense', component: UserEntrysComponent, canActivate: [AuthGuardService]},
+
 
 ];
 

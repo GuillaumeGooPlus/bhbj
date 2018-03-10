@@ -16,6 +16,7 @@ import {MatRadioModule} from '@angular/material';
 import {MatInputModule} from '@angular/material';
 import {PaiementCardModule} from '../nav/paiementCard/paiementCard.module';
 import {MatNativeDateModule} from '@angular/material';
+import {MatStepperModule} from '@angular/material/stepper';
 // import { CommonModule } from '@angular/common';
 // import { ProjectModule} from '../project/project.module';
 // import { PaiementService} from './paiement.service';
@@ -45,6 +46,7 @@ import {MatNativeDateModule} from '@angular/material';
     MatDatepickerModule,
     PaiementCardModule,
     MatNativeDateModule,
+    MatStepperModule,
     // SignaturePadModule,
     // AutocompleteComponent,
   ],

@@ -4,7 +4,7 @@ import { PaiementService } from '../../companie/single/paiement/paiement.service
 import { UserEntry } from '../userEntry.model';
 import { ToastsManager } from 'ng2-toastr';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../user/user.service';
 import { QuoteService } from '../../quote/quote.service';
 import { DeleteDialogComponent } from '../../nav/deleteDialog/deleteDialog.component';
@@ -12,7 +12,6 @@ import { Quote } from '../../quote/quote.model';
 import { Search } from '../../shared/shared.model';
 import { MatDialog } from '@angular/material';
 import { AuthService} from '../../auth/auth.service';
-
 
 
 @Component({
@@ -30,6 +29,7 @@ export class UserEntryComponent implements OnInit {
   fetchedUserEntry: UserEntry = new UserEntry();
 
   myForm: FormGroup;
+  secondFormGroup: FormGroup;
   step = -1;
 
 
@@ -63,12 +63,17 @@ export class UserEntryComponent implements OnInit {
     setTimeout(() => { this.step = 0 });
     this.myForm = this._fb.group({
       amount: [''],
+      dateUserEntry: [''],
       title: [''],
       nameUserEntry: [''],
       isPaid: [false],
       type: [''],
       datePaiement: [null, []],
     })
+    this.secondFormGroup = this._fb.group({
+      secondCtrl: ['']
+    });
+
 
 
 
@@ -87,7 +92,8 @@ export class UserEntryComponent implements OnInit {
           res => {
             this2.authService.successNotif(res.message)
             // this2.saved.emit()
-            this2.getUserEntry(res.obj._id)
+            this2.fetchedUserEntry = res.item
+            // this2.getUserEntry(res.obj._id)
             resolve(true)
           },
           error => {
@@ -100,8 +106,9 @@ export class UserEntryComponent implements OnInit {
           .subscribe(
           res => {
             this2.authService.successNotif(res.message)
+            this2.fetchedUserEntry = res.item
             // this2.saved.emit()
-            this2.getUserEntry(res.obj._id)
+            // this2.getUserEntry(res.item._id)
             // if(this.showHeader)
             //   this.router.navigate(['userEntry/edit/' + res.obj._id])
           },

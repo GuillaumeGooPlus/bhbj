@@ -76,7 +76,16 @@ router.put('/:id', function (req, res, next) {
       })
     } else {
 
-        item.detailUserEntry = req.body.detailUserEntry
+        item.tours = req.body.tours
+        item.dateUserEntry = req.body.dateUserEntry
+        item.info1 = req.body.info1
+        item.info2 = req.body.info2
+        item.info3 = req.body.info3
+        item.info4 = req.body.info4
+        item.info5 = req.body.info5
+        item.info6 = req.body.info6
+        item.info7 = req.body.info7
+        item.info8 = req.body.info8
 
 
         item.save(function (err, result) {
@@ -86,9 +95,21 @@ router.put('/:id', function (req, res, next) {
               err: err
             })
           }
-          res.status(201).json({
-            message: 'Updated successfully',
-            obj: result
+          UserEntry
+          .findById({_id: result._id})
+          .populate({path: 'tours', model: 'Tour'})
+          .exec(function (err, item) {
+            if (err) {
+              return res.status(404).json({
+                message: '',
+                err: err
+              })
+            } else {
+              res.status(200).json({
+                message: 'Success',
+                item: item
+              })
+            }
           })
         })
 
@@ -116,10 +137,27 @@ router.post('/', function (req, res, next) {
         error: {message: 'Error'}
       })
     }
-    res.status(200).json({
-      message: 'Registration Successfull',
-      obj: result
+
+    UserEntry
+    .findById({_id: result._id})
+    .populate({path: 'tours', model: 'Tour'})
+    .exec(function (err, item) {
+      if (err) {
+        return res.status(404).json({
+          message: '',
+          err: err
+        })
+      } else {
+        res.status(200).json({
+          message: 'Success',
+          item: item
+        })
+      }
     })
+
+
+
+
   })
 })
 
@@ -184,7 +222,6 @@ router.get('/page/:page', function (req, res, next) {
 router.get('/:id', function (req, res, next) {
   UserEntry
   .findById({_id: req.params.id})
-  .populate('vendors')
   .populate('forms')
   .exec(function (err, item) {
     if (err) {

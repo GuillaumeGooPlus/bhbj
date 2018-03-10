@@ -10,15 +10,66 @@
           {{'UserEntry' | translate}}
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <form [formGroup]="myForm" novalidate (ngSubmit)="save()">
-        <div class="row">
-          <div class="col-12 col-lg-6">
+
+
+
+
+
+      <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+        <mat-step [stepControl]="firstFormGroup">
+
+
+          <form [formGroup]="myForm" novalidate (ngSubmit)="save()">
+            <ng-template matStepLabel>Torunée</ng-template>
+            <div class="row">
+              <div class="col-12 col-lg-6">
+
+
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker" [ngModelOptions]="{standalone: true}" [(ngModel)]="fetchedUserEntry.dateUserEntry" placeholder="Date de la tournée">
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-12 col-lg-6">
+                <app-autocomplete [title]="'Tours'" [singleChoice]=true [typeAutocomplete]="'tour'" [arrayContent]="fetchedUserEntry.tours">
+                </app-autocomplete>
+              </div>
+              <div class="col-12 col-lg-6">
+                <button mat-button matStepperNext>Suivant</button>
+              </div>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form novalidate [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Bordereau</ng-template>
             <mat-form-field>
-              <input matInput type="text" formControlName="nameUserEntry" [(ngModel)]="fetchedUserEntry.nameUserEntry" placeholder="{{'Name UserEntry' | translate}}">
+              <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="fetchedUserEntry.info2" placeholder="Bordereau">
             </mat-form-field>
+            <mat-form-field>
+              <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="fetchedUserEntry.info2" placeholder="PPI">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="fetchedUserEntry.info3" placeholder="Emport">
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          You are now done.
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
           </div>
-        </div>
-      </form>
+        </mat-step>
+      </mat-horizontal-stepper>
+
+
       <mat-action-row>
         <div class="spaceBetween width100perc">
           <div>
@@ -32,39 +83,6 @@
         </div>
       </mat-action-row>
     </mat-expansion-panel>
-    <mat-expansion-panel *ngIf="fetchedUserEntry._id && fetchedUserEntry.amount" [expanded]="step === 1" (opened)="setStep(1)">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>credit_card</mat-icon>
-        </mat-panel-title>
-        <mat-panel-description>
-          {{'Payment method' | translate}}
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <div *ngIf="fetchedUserEntry.isPaid">
-        <mat-radio-group *ngIf="fetchedUserEntry.stripe.charge.status !=='succeeded'" [ngModelOptions]="{standalone: true}" [(ngModel)]="fetchedUserEntry.type">
-          <mat-radio-button class="paiementsTypes" *ngFor="let n of paiementsTypes" [value]="n.value">{{n.label | translate}}</mat-radio-button>
-          <mat-radio-button *ngIf="accountConnectStripe.id" [value]="'stripe'">{{'Card' | translate}}</mat-radio-button>
-        </mat-radio-group>
-        <div *ngIf="fetchedUserEntry.type=='stripe' && fetchedUserEntry._id">
-          <mat-card *ngIf="fetchedUserEntry.stripe.charge.status !=='succeeded'">
-            <app-paiement-card [hideAddress]=true [newCard]="newCard"></app-paiement-card>
-          </mat-card>
-          <mat-card *ngIf="fetchedUserEntry.stripe.charge.status ==='succeeded'">
-            <mat-icon color="accent">done</mat-icon>
-            {{fetchedUserEntry.stripe.charge.amount / 100}} {{fetchedUserEntry.stripe.charge.currency}} ({{fetchedUserEntry.stripe.charge.created * 1000 | date: 'dd/MM/yyyy'}})
-            <p>{{'Funding'| translate}}: {{fetchedUserEntry.stripe.charge.source.funding}}</p>
-          </mat-card>
-        </div>
-      </div>
-      <mat-action-row>
-        <button mat-mini-fab mat-mini-fab color="primary" *ngIf="fetchedUserEntry.type==='stripe' && fetchedUserEntry.stripe.charge.status !=='succeeded'" (click)="payByCardConnect()">
-          <mat-icon>credit_card</mat-icon>
-        </button>
-        <button *ngIf="fetchedUserEntry.type!=='stripe'" mat-mini-fab color="primary" (click)="closeDialog()">
-          <mat-icon aria-label="save">check_circle</mat-icon>
-        </button>
-      </mat-action-row>
-    </mat-expansion-panel>
+
   </mat-accordion>
 </div>
