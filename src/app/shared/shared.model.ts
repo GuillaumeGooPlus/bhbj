@@ -21,6 +21,7 @@ export class Search {
   isExternalUser = true;
   isExpense = false;
   typeQuote = '';
+  isInDialog = false;
   year = 0;
   isFromAutocomplete = false;
   isAdmin = false;

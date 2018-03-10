@@ -28,8 +28,11 @@ export class UserEntryComponent implements OnInit {
 
   fetchedUserEntry: UserEntry = new UserEntry();
 
-  myForm: FormGroup;
-  secondFormGroup: FormGroup;
+  formGroup1: FormGroup;
+  formGroup2: FormGroup;
+  formGroup3: FormGroup;
+  formGroup4: FormGroup;
+  formGroup5: FormGroup;
   step = -1;
 
 
@@ -61,7 +64,7 @@ export class UserEntryComponent implements OnInit {
 
 
     setTimeout(() => { this.step = 0 });
-    this.myForm = this._fb.group({
+    this.formGroup1 = this._fb.group({
       amount: [''],
       dateUserEntry: [''],
       title: [''],
@@ -70,9 +73,10 @@ export class UserEntryComponent implements OnInit {
       type: [''],
       datePaiement: [null, []],
     })
-    this.secondFormGroup = this._fb.group({
-      secondCtrl: ['']
-    });
+    this.formGroup2 = this._fb.group({});
+    this.formGroup3 = this._fb.group({});
+    this.formGroup4 = this._fb.group({});
+    this.formGroup5 = this._fb.group({});
 
 
 

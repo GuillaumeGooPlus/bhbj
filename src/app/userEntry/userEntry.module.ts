@@ -17,6 +17,7 @@ import {MatInputModule} from '@angular/material';
 import {PaiementCardModule} from '../nav/paiementCard/paiementCard.module';
 import {MatNativeDateModule} from '@angular/material';
 import {MatStepperModule} from '@angular/material/stepper';
+import { AmazingTimePickerModule } from 'amazing-time-picker'; // this line you need
 // import { CommonModule } from '@angular/common';
 // import { ProjectModule} from '../project/project.module';
 // import { PaiementService} from './paiement.service';
@@ -47,6 +48,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     PaiementCardModule,
     MatNativeDateModule,
     MatStepperModule,
+    AmazingTimePickerModule,
     // SignaturePadModule,
     // AutocompleteComponent,
   ],

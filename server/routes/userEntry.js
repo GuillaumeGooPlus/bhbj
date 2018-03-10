@@ -86,6 +86,10 @@ router.put('/:id', function (req, res, next) {
         item.info6 = req.body.info6
         item.info7 = req.body.info7
         item.info8 = req.body.info8
+        item.info9 = req.body.info9
+        item.info10 = req.body.info10
+        item.info11 = req.body.info11
+        item.info12 = req.body.info12
 
 
         item.save(function (err, result) {
@@ -128,7 +132,7 @@ router.post('/', function (req, res, next) {
   //var UserEntry = new UserEntry(req.body)
   var userEntry = new UserEntry(req.body)
   userEntry.ownerCompanies = req.user.ownerCompanies
-  userEntry.owner = req.user._id
+  userEntry.users = req.user._id
   userEntry.save(function (err, result) {
     if (err) {
       console.log(err)
@@ -188,7 +192,8 @@ router.get('/page/:page', function (req, res, next) {
   UserEntry
   .find(searchQuery)
   .sort('-createdAt')
-  .populate({path: 'forms', model: 'Form'})
+  .populate({path: 'tours', model: 'Tour'})
+  .populate({path: 'users', model: 'User'})
   .limit(itemsPerPage)
   .skip(skip)
   .exec(function (err, item) {

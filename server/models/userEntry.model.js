@@ -6,7 +6,7 @@ var mongoose                = require('mongoose'),
 var userEntry = new Schema({
   //  _id: String,
     ownerCompanies: [{type: Schema.Types.ObjectId, ref: 'Companie'}],
-    nameUserEntry: {type: String, default: ['']},
+    users: [{type: Schema.Types.ObjectId, ref: 'User'}],
     tours: [{type: Schema.Types.ObjectId, ref: 'Tour'}],
     dateUserEntry: {type: Date, default: [Date()]},
     info1: {type: String, default: ['']},
@@ -17,6 +17,10 @@ var userEntry = new Schema({
     info6: {type: String, default: ['']},
     info7: {type: String, default: ['']},
     info8: {type: String, default: ['']},
+    info9: {type: String, default: ['']},
+    info10: {type: String, default: ['']},
+    info11: {type: String, default: ['']},
+    info12: {type: String, default: ['']},
 
   },
   {
