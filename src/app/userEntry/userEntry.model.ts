@@ -1,10 +1,12 @@
 import { Companie } from '../companie/companie.model';
 import { Tour } from '../tour/tour.model';
+import { User } from '../user/user.model';
 
 
 export class UserEntry {
   _id = '';
   ownerCompanies: Companie[] = []
+  users: User[] = []
   tours: Tour[] = []
   nameUserEntry = '';
   dateUserEntry = new Date();

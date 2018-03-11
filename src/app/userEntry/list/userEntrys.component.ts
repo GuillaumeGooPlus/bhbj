@@ -8,6 +8,9 @@ import { Search, PaginationData} from '../../shared/shared.model';
 import { GlobalEventsManager } from '../../globalEventsManager';
 import { UserEntryDialogComponent } from '../single/dialog/userEntryDialog.component';
 
+import { Angular2Csv } from 'angular2-csv/Angular2-csv';
+
+
 
 @Component({
   selector: 'app-userEntrys',
@@ -93,6 +96,23 @@ export class UserEntrysComponent implements OnInit, OnChanges {
     dialogRef.afterClosed().subscribe(result => {
       this.getUserEntrys(this.paginationData.currentPage, this.search);
     })
+  }
+
+
+  downloadFile() {
+    let newFetchedUserEntrys: any
+    newFetchedUserEntrys = this.fetchedUserEntrys
+    this.fetchedUserEntrys.map((userEntry,i) => {
+      userEntry.tours.map(tour => {
+          newFetchedUserEntrys[i].nameTour = tour.nameTour
+      });
+      userEntry.users.map(user => {
+          newFetchedUserEntrys[i].email = user.email
+          newFetchedUserEntrys[i].name = user.profile.name
+          newFetchedUserEntrys[i].lastName = user.profile.lastName
+      });
+    })
+   new Angular2Csv(newFetchedUserEntrys, 'My Report');
   }
 
 }

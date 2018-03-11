@@ -79,7 +79,7 @@
         <mat-step [stepControl]="formGroup5">
           <form novalidate [formGroup]="formGroup5" (ngSubmit)="save()">
             <mat-form-field>
-              <input matInput atp-time-picker type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="fetchedUserEntry.info9" placeholder="Heure de prise de poste">
+              <input matInput type="time" [ngModelOptions]="{standalone: true}" [(ngModel)]="fetchedUserEntry.info9" placeholder="Heure de prise de poste">
             </mat-form-field>
             <mat-form-field>
               <input matInput atp-time-picker type="text" [ngModelOptions]="{standalone: true}" [(ngModel)]="fetchedUserEntry.info10" placeholder="Heure de pose">
