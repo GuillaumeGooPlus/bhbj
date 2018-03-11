@@ -101,8 +101,12 @@ export class UserEntrysComponent implements OnInit, OnChanges {
 
   downloadFile() {
     let newFetchedUserEntrys: any
-    newFetchedUserEntrys = this.fetchedUserEntrys
-    this.fetchedUserEntrys.map((userEntry,i) => {
+    // newFetchedUserEntrys = [...this.fetchedUserEntrys]
+    // newFetchedUserEntrys = this.fetchedUserEntrys.map(x => x)
+    newFetchedUserEntrys = JSON.parse(JSON.stringify(this.fetchedUserEntrys))
+
+
+    newFetchedUserEntrys.map((userEntry, i) => {
       userEntry.tours.map(tour => {
           newFetchedUserEntrys[i].nameTour = tour.nameTour
       });
@@ -116,6 +120,22 @@ export class UserEntrysComponent implements OnInit, OnChanges {
       newFetchedUserEntry.tours = []
       newFetchedUserEntry.users = []
     })
+    // let newFetchedUserEntrys: any
+    // newFetchedUserEntrys = this.fetchedUserEntrys
+    // this.fetchedUserEntrys.map((userEntry, i) => {
+    //   userEntry.tours.map(tour => {
+    //       newFetchedUserEntrys[i].nameTour = tour.nameTour
+    //   });
+    //   userEntry.users.map(user => {
+    //       newFetchedUserEntrys[i].email = user.email
+    //       newFetchedUserEntrys[i].name = user.profile.name
+    //       newFetchedUserEntrys[i].lastName = user.profile.lastName
+    //   });
+    // })
+    // newFetchedUserEntrys.map(newFetchedUserEntry => {
+    //   newFetchedUserEntry.tours = []
+    //   newFetchedUserEntry.users = []
+    // })
    new Angular2Csv(newFetchedUserEntrys, 'My Report');
   }
 
