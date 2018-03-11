@@ -112,6 +112,10 @@ export class UserEntrysComponent implements OnInit, OnChanges {
           newFetchedUserEntrys[i].lastName = user.profile.lastName
       });
     })
+    newFetchedUserEntrys.map(newFetchedUserEntry => {
+      newFetchedUserEntry.tours = []
+      newFetchedUserEntry.users = []
+    })
    new Angular2Csv(newFetchedUserEntrys, 'My Report');
   }
 
